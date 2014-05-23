@@ -9,7 +9,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = Friendship.find(params[:id])
+    @friendship = current_user.friendships.find(params[:id])
     @friendship.destroy
     redirect_to root_url
   end
