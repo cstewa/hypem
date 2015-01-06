@@ -6,6 +6,8 @@ gem 'rails', '4.0.3'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+gem 'protected_attributes'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -41,7 +43,7 @@ end
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'pry-debugger'
+  #gem 'pry-debugger'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'dotenv-rails'     # Allow rails (console, etc) to access .env file for environment variables.
@@ -51,6 +53,10 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+gem 'hypem'
+gem 'soundcloud'
+gem 'haml'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt'

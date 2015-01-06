@@ -1,1 +1,14 @@
-<p class= "main_page">Hypem Main Page - split</p>
+<div id= "left_screen">
+  <% @playlists.each do |playlist| %>
+    <ul>
+      <%= playlist.name %>
+      <% playlist.songs.each do |song| %>
+        <li>
+          <div class= "song_player">
+            <%= song.embed_info %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

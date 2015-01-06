@@ -1,0 +1,71 @@
+<p id='close_modal'>X</p>
+
+<div class="modal_title">
+  <h1>Sign Up</h1>
+</div>
+
+<div id="submit_form_label" class="form_labels">
+  <div class="label">
+    <p class="submit_labels">First Name:</p>
+  </div>
+  <div class="label">
+    <p class="submit_labels">Last Name:</p>
+  </div>
+  <div class="label">
+    <p class="submit_labels">Hypem Username</p>
+  </div>
+  <div class="label">
+    <p class="submit_labels">Password</p>
+  </div>
+  <div class="label">
+    <p class="submit_labels">Password Confirmation</p>
+  </div>
+</div>
+
+<div class="form_fields">
+  <%= form_for @user, remote: true, authenticity_token: true do |f| %>
+    <div class="field">
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="field">
+      <%= f.text_field :hypem %>
+    </div>
+    <div class="field">
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <div class="actions" id='signup_submit'>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+
+<p id= 'errors'>
+
+<% if !(@errors.nil?) %>
+  <% @errors.each do |name, msg| %>
+    <p>
+      <%= name %>
+      <%= msg %>
+    </p>
+  <% end %>
+<% end %>
+
+</p>
+
+
+<script>
+  $('#close_modal, .modal_overlay').click(function() {
+    $('.modal_box').empty();
+    $('.modal_wrap').fadeOut('fast');
+  });
+  $('#signup_submit').click(function(){
+    $('.modal_box').empty();
+    $('.modal_wrap').fadeOut('fast');
+  })
+</script>

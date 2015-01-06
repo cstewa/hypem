@@ -1,0 +1,45 @@
+<p id= 'close_modal'> X </p>
+
+<div class="modal_title">
+  <h1>Login</h1>
+</div>
+
+<div class="form_labels">
+  <div class="label">
+    <p>Hypem Username:</p>
+  </div>
+  <div id="lgn_pswrd" class="label">
+    <p>Password</p>
+  </div>
+</div>
+
+<div class="form_fields">
+  <%= form_tag sessions_path, :method => :post do %>
+    <div class="field">
+      <%= text_field_tag :hypem %>
+    </div>
+    <div class="field">
+      <%= password_field_tag :password %>
+    </div>
+    <div class="actions" class='login_submit'>
+      <%= submit_tag "Login", :class => "submit_button" %>
+    </div>
+  <% end %>
+</div>
+
+<p id= 'errors'>
+
+</p>
+
+
+
+<script>
+  $('#close_modal, .modal_overlay').click(function() {
+    $('.modal_box').empty();
+    $('.modal_wrap').fadeOut('fast');
+  });
+  $('#login_submit').click(function(){
+    $('.model_box').empty();
+    $('.modal_wrap').fadeOut('fast');
+  })
+</script>

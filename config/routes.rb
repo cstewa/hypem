@@ -1,13 +1,18 @@
 Hypem::Application.routes.draw do
   get "friendships/create"
   get "friendships/destroy"
-  get "sessions/new"
-  get "sessions/destroy"
-  get "users/new"
-  get "users/destroy"
-  get "create/destroy"
 
-  root :to => "main#show" 
+  resources :sessions, only:[:create]
+  resources :users
+
+  get 'logout' => 'sessions#destroy', as: :logout
+  get 'login' => 'sessions#new', as: :login
+
+  get "/errors/:id" => 'users#errors'
+
+  get 'popular' => 'playlists#popular'
+
+  root :to => "main#show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

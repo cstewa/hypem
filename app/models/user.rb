@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  attr_accessible :email, :password, :password_confirmation, :hypem, :first_name, :last_name
+  attr_accessible :hypem, :password, :password_confirmation, :first_name, :last_name
 
   has_many :friendships
   has_many :friends, through: :friendships
@@ -13,6 +13,6 @@ class User < ActiveRecord::Base
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  validates_presence_of :hypem
+  validates_uniqueness_of :hypem
 end
