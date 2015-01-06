@@ -4,7 +4,7 @@ module SC
         :client_secret => '0347fb41cfb4fd5e06d8aec6b97cc094')
 
     def self.embed_info(url)
-      embed_info = CLIENT.get('/oembed', :url => url)
+      embed_info = CLIENT.get('/oembed', url: url)
       embed_info['html'].sub("400", "120").html_safe
     end
 

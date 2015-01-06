@@ -8,5 +8,4 @@ class Song < ActiveRecord::Base
   def soundcloud_player
     SC::Track.embed_info(self.url)
   end
-
 end
