@@ -12,5 +12,7 @@ module SC
       tracks = CLIENT.get('/tracks', :q => query)
       tracks[0][:permalink_url]
     end
+
+    #search by title, song length and permalink url and make sure both only have the name of the artist and remix if applicaable
   end
 end
