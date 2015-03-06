@@ -10,7 +10,7 @@ Hypem::Application.routes.draw do
   get "/errors/:id" => 'users#errors'
 
   get 'api/popular' => 'playlists#popular'
-  match '/api/signup', to: 'users#create', via: [:options]
+  match 'api/signup', to: 'users#create', via: [:options]
 
   root :to => "main#show"
   # The priority is based upon order of creation: first created -> highest priority.
