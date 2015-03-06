@@ -3,14 +3,14 @@ Hypem::Application.routes.draw do
   get "friendships/destroy"
 
   resources :sessions, only:[:create]
-  resources :users
 
   get 'logout' => 'sessions#destroy', as: :logout
   get 'login' => 'sessions#new', as: :login
 
   get "/errors/:id" => 'users#errors'
 
-  get 'popular' => 'playlists#popular'
+  get 'api/popular' => 'playlists#popular'
+  match '/api/signup', to: 'users#create', via: [:options]
 
   root :to => "main#show"
   # The priority is based upon order of creation: first created -> highest priority.

@@ -38,9 +38,12 @@ ActiveRecord::Schema.define(version: 20140714005312) do
     t.datetime "updated_at"
   end
 
-  create_table "songs", force: true do |t|
+  create_table "tracks", force: true do |t|
     t.string   "url"
     t.integer  "playlist_id"
+    t.string   "title"
+    t.string   "artist"
+    t.string   "blog"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

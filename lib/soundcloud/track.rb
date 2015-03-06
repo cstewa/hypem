@@ -1,4 +1,4 @@
-module SC
+module SoundcloudWrapper
   class Track
     CLIENT = Soundcloud.new(:client_id => '0bf253a58ca9b42631a739789bdc25c7',
         :client_secret => '0347fb41cfb4fd5e06d8aec6b97cc094')
