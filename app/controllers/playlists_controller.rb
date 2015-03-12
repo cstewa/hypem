@@ -1,4 +1,6 @@
 class PlaylistsController < ApplicationController
+  respond_to :json
+
   def popular
     #remember this paginates!
     tracks = Hypem::Playlist.popular.tracks
@@ -23,6 +25,8 @@ class PlaylistsController < ApplicationController
   end
 
   def index
+    playlists = current_user ? current_user.playlists.map(&:name) : ""
+    render status: 200, json: playlists
   end
 
   private

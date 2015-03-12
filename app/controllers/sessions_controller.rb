@@ -1,23 +1,23 @@
 class SessionsController < ApplicationController
+  respond_to :json
+
   def new
   end
 
-  def create 
-    user = login(params[:hypem], params[:password])
-    respond_to do |format|
-      format.html {
-        if user
-          redirect_to root_path #, notice: "Logged in"
-        else
-          redirect_to root_path #, alert: "Email or password invalid"
-        end
-      }
-      format.js { render layout: false }
+  def create
+    if login(params["user"]["hypem"], params["user"]["password"])
+      render status: 200, json: { current_user: current_user }
+    else
+      render status: 400, json: { error: "Something went wrong"}
     end
+  end
+
+  def show
+    render status: 200, json: { current_user: current_user, logged_in: logged_in? }
   end
 
   def destroy
     logout
-    redirect_to root_url
+    render status: 200, json: { current_user: current_user }
   end
 end
