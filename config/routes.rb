@@ -6,6 +6,10 @@ Hypem::Application.routes.draw do
 
   get 'api/popular' => 'playlists#popular'
   get 'api/index' => 'playlists#index'
+  post 'api/playlists/add' => 'playlists#create'
+
+  post 'api/tracks/add' => 'tracks#create'
+
   post 'api/signup', to: 'users#create'
   post 'api/login', to: 'sessions#create'
   delete 'api/logout', to: 'sessions#destroy'

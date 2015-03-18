@@ -1,5 +1,5 @@
 class Track < ActiveRecord::Base
-  attr_accessible :url, :title, :artist, :blog
+  attr_accessible :url, :title, :artist, :blog, :playlist_id
   belongs_to :playlist
 
   CLIENT = Soundcloud.new(:client_id => '0bf253a58ca9b42631a739789bdc25c7',

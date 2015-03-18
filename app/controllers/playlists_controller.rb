@@ -19,14 +19,25 @@ class PlaylistsController < ApplicationController
   end
 
   def create
+    playlist = current_user.playlists.build(name: params["name"])
+    if playlist.save
+      render status: 201, json: {}
+    else
+      render status: 400, json: { errors: playlist.errors.full_messages.join(", ") }
+    end
   end
 
   def update
   end
 
   def index
-    playlists = current_user ? current_user.playlists.map(&:name) : ""
-    render status: 200, json: playlists
+    playlists = {}
+    current_user.playlists.each do |playlist|
+      playlists[playlist.name] = playlist.tracks.map do |track|
+        {title: track.title, artist: track.artist, url: track.url, blog: track.blog}
+      end
+    end
+    render status: 200, json: { playlists: playlists }
   end
 
   private
