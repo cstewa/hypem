@@ -4,16 +4,11 @@ class SessionsController < ApplicationController
   def new
   end
 
+  #change this later
   def create
-    # if login(params["user"]["hypem"], params["user"]["password"])
-    #   render status: 200, json: { current_user: current_user }
-    # else
-    #   render status: 400, json: { error: "Something went wrong"}
-    # end
-    @user = User.find_by(hypem: params["user"]["hypem"])
-    if @user.authenticate(params["user"]["password"])
-      session[:hypem] = @user.hypem
-      render status: 200, json: { current_user: @user.hypem }
+    user = User.find_by(hypem: params["user"]["hypem"])
+    if user
+      render status: 200, json: { auth_token: user.generate_auth_token }
     else
       render status: 400, json: { error: "Something went wrong"}
     end

@@ -6,12 +6,11 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
     user_params = params["user"]
     user = User.new(user_params)
     if user.save
-      #auto_login(user)
-      session[:hypem] = user.hypem
-      render status: 201, json: { user: params["user"], current_user: user.hypem }
+      render status: 200, json: { auth_token: user.generate_auth_token }
     else
       render status: 400, json: { errors: user.errors.full_messages.join(", ") }
     end
