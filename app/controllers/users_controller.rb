@@ -9,8 +9,9 @@ class UsersController < ApplicationController
     user_params = params["user"]
     user = User.new(user_params)
     if user.save
-      auto_login(user)
-      render status: 201, json: { user: params["user"], current_user: current_user }
+      #auto_login(user)
+      session[:hypem] = user.hypem
+      render status: 201, json: { user: params["user"], current_user: user.hypem }
     else
       render status: 400, json: { errors: user.errors.full_messages.join(", ") }
     end

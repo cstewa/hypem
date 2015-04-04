@@ -5,8 +5,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if login(params["user"]["hypem"], params["user"]["password"])
-      render status: 200, json: { current_user: current_user }
+    # if login(params["user"]["hypem"], params["user"]["password"])
+    #   render status: 200, json: { current_user: current_user }
+    # else
+    #   render status: 400, json: { error: "Something went wrong"}
+    # end
+    @user = User.find_by(hypem: params["user"]["hypem"])
+    if @user.authenticate(params["user"]["password"])
+      session[:hypem] = @user.hypem
+      render status: 200, json: { current_user: @user.hypem }
     else
       render status: 400, json: { error: "Something went wrong"}
     end
@@ -17,7 +24,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout
-    render status: 200, json: { current_user: current_user }
+    #logout
+    session[:hypem] = nil
+    render status: 200, json: { current_user: "test" }
   end
 end

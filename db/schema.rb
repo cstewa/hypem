@@ -49,8 +49,7 @@ ActiveRecord::Schema.define(version: 20140714005312) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "crypted_password",                null: false
-    t.string   "salt",                            null: false
+    t.string   "password_digest"
     t.string   "hypem",                           null: false
     t.string   "first_name"
     t.string   "last_name"

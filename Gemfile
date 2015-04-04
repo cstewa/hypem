@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'sorcery'
 
+gem 'jwt'
+
 group :development do
   gem 'pry-rails'
   gem 'better_errors'

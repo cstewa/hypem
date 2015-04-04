@@ -222,6 +222,7 @@ DEPENDENCIES
   hypem
   jbuilder (~> 1.2)
   jquery-rails
+  jwt
   meta_request
   pg
   protected_attributes
