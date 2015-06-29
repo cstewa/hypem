@@ -4,7 +4,7 @@ Hypem::Application.routes.draw do
 
   get "/errors/:id" => 'users#errors'
 
-  get 'api/popular' => 'playlists#popular'
+  get 'hypem/popular' => 'hypem_playlists#popular'
   get 'api/index' => 'playlists#index'
   post 'api/playlists/add' => 'playlists#create'
 

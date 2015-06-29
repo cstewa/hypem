@@ -1,4 +1,4 @@
-class PlaylistsController < ApplicationController
+class HypemPlaylistsController < ApplicationController
   respond_to :json
 
   def popular
@@ -11,7 +11,6 @@ class PlaylistsController < ApplicationController
 
     # tracks = Hypem::Playlist.popular.page(3).tracks
     # third_page = build_tracks_object(tracks)
-
     render json: first_page#.concat(second_page).concat(third_page)
   end
 
