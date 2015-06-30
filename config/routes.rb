@@ -10,8 +10,12 @@ Hypem::Application.routes.draw do
 
   post 'api/tracks/add' => 'tracks#create'
 
-  post 'api/signup', to: 'users#create'
-  post 'api/login', to: 'sessions#create'
+  get '/auth/soundcloud/callback', to: 'sessions#create_from_soundcloud'
+  resources :users
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+
+
   delete 'api/logout', to: 'sessions#destroy'
   get 'api/sessions/show', to: 'sessions#show'
 

@@ -6,12 +6,26 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(hypem: params["user"]["hypem"]).try(:authenticate, params["user"]["password"])
+    user = User.find_by(hypem: params["hypem"]).try(:authenticate, params["password"])
     if user
-      render status: 200, json: { auth_token: user.generate_auth_token, hypem: user.hypem }
+      flash[:success] = "Logged In!"
+      redirect_to root_path
     else
-      render status: 400, json: { error: "Something went wrong"}
+      flash[:error] = "Invalid email or password"
+      redirect_to root_path
     end
+  end
+
+  def create_from_soundcloud
+    code = params[:code]
+    auth_hash = @soundcloud_client.exchange_token(code: params[:code])
+    User.find_or_create_by(soundcloud_access_token: auth_hash[:access_token]) do |user|
+      user.hypem = "none"
+      user.password = auth_hash[:access_token]
+      user.soundcloud_expires_in = auth_hash[:expires_in]
+      user.refresh_token = auth_hash[:refresh_token]
+    end
+    #sign in this user with rails session!
   end
 
   def show

@@ -7,12 +7,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    user_params = params[:user]
-    user = User.new(user_params)
+    user = User.new(params[:user])
     if user.save
-      render status: 200, json: { auth_token: user.generate_auth_token, hypem: user.hypem }
+      flash[:success] = "Signed up!"
+      redirect_to root_path
     else
-      render status: 400, json: { errors: user.errors.full_messages.join(", ") }
+      flash[:error] = user.errors.full_messages.join(", ")
+      redirect_to root_path
     end
   end
 

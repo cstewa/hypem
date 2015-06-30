@@ -15,9 +15,4 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_presence_of :hypem
   validates_uniqueness_of :hypem
-
-  def generate_auth_token
-    payload = { user_id: self.id }
-    AuthToken.encode(payload)
-  end
 end
